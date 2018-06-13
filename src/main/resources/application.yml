@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: summer-mall-admin
+#  freemarker:
+#    suffix: .html
+
+  datasource:
+    druid:
+      url: jdbc:mysql://mysql-server:3306/summer-mall?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 123456
+      initial-size: 5
+      max-active: 5
+      # StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+
+  data:
+    elasticsearch:
+      cluster-nodes: elasticsearch-server:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+  redis:
+    host: redis-server
+    port: 6379
+    password:
+
+
+server:
+  port: 8080
+#  context-path:
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+
+mall:
+  qiniu:
+    accessKey: OAD7ZYR04na_PMfifO58QunEur8AYefyTIedPS5y
+    secretKey: aiEgTAoXtpc2i61fkjKKfIz7iSFFCHOPhrIykfJx
+    bucket: mall
+    img-domain: http://img1.nextyu.com/
