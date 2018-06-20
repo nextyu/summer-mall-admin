@@ -5,16 +5,15 @@ spring:
 #    suffix: .html
 
   datasource:
-    druid:
       url: jdbc:mysql://mysql-server:3306/summer-mall?useUnicode=true&characterEncoding=UTF-8
       username: root
       password: 123456
-      initial-size: 5
-      max-active: 5
-      # StatViewServlet配置
-      stat-view-servlet:
-        enabled: true
-        url-pattern: /druid/*
+#      initial-size: 5
+#      max-active: 5
+#      # StatViewServlet配置
+#      stat-view-servlet:
+#        enabled: true
+#        url-pattern: /druid/*
 
   data:
     elasticsearch:

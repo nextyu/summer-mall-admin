@@ -21,7 +21,7 @@ public class CarouselController extends BaseController {
 
     @GetMapping("/save")
     public String save() {
-        return VIEW_PREFIX + "save";
+        return "carousel/save";
     }
 
     @PostMapping()

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
  * @author nextyu
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public UserInfoInterceptor userInfoInterceptor() {
@@ -26,17 +26,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         registry.addInterceptor(userInfoInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/login", "/js/**", "/images/**", "/css/**");
-
-        super.addInterceptors(registry);
     }
 
-    /*@Override
+    @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .allowedOrigins("*");
-    }*/
+    }
 
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {

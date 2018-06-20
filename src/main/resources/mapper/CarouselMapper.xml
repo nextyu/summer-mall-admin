@@ -170,6 +170,9 @@
             carousel c
         WHERE
             c.is_delete = 0
+        <if test="title != '' and title != null">
+            and c.title LIKE CONCAT('%', #{title, jdbcType=VARCHAR}, '%')
+        </if>
         ORDER BY
             c.create_time DESC
     </select>

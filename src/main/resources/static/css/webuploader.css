@@ -62,10 +62,10 @@
 }
 
 #uploader .placeholder {
-    min-height: 350px;
-    padding-top: 178px;
+    min-height: 200px;
+    padding-top: 100px;
     text-align: center;
-    background: url(../images/image.png) center 93px no-repeat;
+    background: url(../images/image.png) center 20px no-repeat;
     color: #cccccc;
     font-size: 18px;
     position: relative;
