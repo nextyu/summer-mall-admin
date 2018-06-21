@@ -1,10 +1,10 @@
 package com.nextyu.mall.web.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.nextyu.mall.common.ServiceResponse;
 import com.nextyu.mall.service.UploadService;
 import com.nextyu.mall.util.UUIDUtil;
 import com.qiniu.storage.model.DefaultPutRet;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +39,7 @@ public class UploadController extends BaseController {
                 String suffix = originalName.substring(originalName.lastIndexOf('.'));
                 DefaultPutRet defaultPutRet = uploadService.uploadImg(file.getBytes(), UUIDUtil.uuid() + suffix);
                 if (null != defaultPutRet) {
-                    if (StringUtils.isNotEmpty(imageName)) {
+                    if (StrUtil.isNotEmpty(imageName)) {
                         imageName.append(",").append(defaultPutRet.key);
                     } else {
                         imageName.append(defaultPutRet.key);

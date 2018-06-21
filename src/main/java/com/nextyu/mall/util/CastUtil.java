@@ -1,6 +1,6 @@
 package com.nextyu.mall.util;
 
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * 转型操作工具类
@@ -42,7 +42,7 @@ public final class CastUtil {
         double doubleValue = defaultValue;
         if (obj != null) {
             String strValue = castString(obj);
-            if (StringUtils.isNotEmpty(strValue)) {
+            if (StrUtil.isNotEmpty(strValue)) {
                 try {
                     doubleValue = Double.parseDouble(strValue);
                 } catch (NumberFormatException e) {
@@ -67,7 +67,7 @@ public final class CastUtil {
         long longValue = defaultValue;
         if (obj != null) {
             String strValue = castString(obj);
-            if (StringUtils.isNotEmpty(strValue)) {
+            if (StrUtil.isNotEmpty(strValue)) {
                 try {
                     longValue = Long.parseLong(strValue);
                 } catch (NumberFormatException e) {
@@ -92,7 +92,7 @@ public final class CastUtil {
         int intValue = defaultValue;
         if (obj != null) {
             String strValue = castString(obj);
-            if (StringUtils.isNotEmpty(strValue)) {
+            if (StrUtil.isNotEmpty(strValue)) {
                 try {
                     intValue = Integer.parseInt(strValue);
                 } catch (NumberFormatException e) {

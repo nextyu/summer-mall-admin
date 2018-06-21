@@ -1,5 +1,6 @@
 package com.nextyu.mall.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nextyu.mall.dao.ProductDetailMapper;
@@ -13,7 +14,6 @@ import com.nextyu.mall.service.UploadService;
 import com.nextyu.mall.util.DateTimeUtil;
 import com.nextyu.mall.util.MoneyUtil;
 import com.nextyu.mall.vo.ProductVO;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(productVO, product);
 
         String subImages = productVO.getSubImages();
-        if (StringUtils.isNotEmpty(subImages)) {
+        if (StrUtil.isNotEmpty(subImages)) {
             product.setMainImage(subImages.split(",")[0]);
         }
 
@@ -117,7 +117,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         String subImages = product.getSubImages();
-        if (StringUtils.isNotEmpty(subImages)) {
+        if (StrUtil.isNotEmpty(subImages)) {
             List<String> images = new ArrayList<>();
             String[] strings = subImages.split(",");
             for (String string : strings) {
