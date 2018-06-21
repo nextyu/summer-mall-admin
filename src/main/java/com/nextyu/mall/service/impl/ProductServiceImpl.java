@@ -52,6 +52,8 @@ public class ProductServiceImpl implements ProductService {
 
 
         if (null != product.getId()) {
+            Product existProduct = productMapper.selectByPrimaryKey(product.getId());
+            product.setVersion(existProduct.getVersion());
             product.setUpdateTime(DateTimeUtil.currentTimeMillis());
             int rows = productMapper.updateByPrimaryKeySelective(product);
             if (rows <= 0) {
@@ -197,5 +199,21 @@ public class ProductServiceImpl implements ProductService {
 
 
         return true;
+    }
+
+    @Override
+    public Boolean updateDelete(Long id) {
+        Product product = productMapper.selectByPrimaryKey(id);
+        if (null == product) {
+            return false;
+        }
+        Product updateProduct = new Product();
+        updateProduct.setId(id);
+        updateProduct.setIsDelete(1);
+        updateProduct.setUpdateTime(DateTimeUtil.currentTimeMillis());
+        updateProduct.setVersion(product.getVersion());
+        int rows = productMapper.updateByPrimaryKeySelective(updateProduct);
+        return rows > 0;
+
     }
 }

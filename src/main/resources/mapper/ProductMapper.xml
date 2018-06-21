@@ -238,11 +238,9 @@
             <if test="updateTime != null">
                 update_time = #{updateTime,jdbcType=BIGINT},
             </if>
-            <if test="version != null">
-                version = #{version,jdbcType=BIGINT},
-            </if>
+                version = version + 1,
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT} and version = #{version}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.nextyu.mall.entity.Product">
     update product

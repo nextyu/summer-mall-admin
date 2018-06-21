@@ -20,4 +20,6 @@ public interface ProductService {
     PageInfo<ProductVO> getPageInfo(ProductQuery query);
 
     Boolean updateStatus(Long id, Integer status);
+
+    Boolean updateDelete(Long id);
 }

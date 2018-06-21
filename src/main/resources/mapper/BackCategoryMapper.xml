@@ -171,6 +171,9 @@
             back_category bc
         WHERE
             bc.is_delete = 0
+        <if test="title != '' and title != null">
+            and bc.title LIKE CONCAT('%', #{title, jdbcType=VARCHAR}, '%')
+        </if>
         ORDER BY
             bc.create_time
     </select>

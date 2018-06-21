@@ -8,7 +8,7 @@
                 <section class="panel panel-padding">
                     <form class="layui-form" action="/backCategory">
                         <div class="layui-form">
-                            <div class="layui-inline">
+                            <!--<div class="layui-inline">
                                 <select name="city" lay-verify="required" lay-filter="ajax" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
                                     <option value="0">请选择分类</option>
                                     <option value="010">北京</option>
@@ -23,14 +23,15 @@
                                 <div class="layui-input-inline">
                                     <input class="layui-input end-date" name="end_date" placeholder="截止日">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <input class="layui-input" name="keyword" placeholder="关键字">
+                                    <input class="layui-input" name="title" placeholder="关键字">
                                 </div>
                             </div>
                             <div class="layui-inline">
                                 <button lay-submit class="layui-btn" lay-filter="search">查找</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
                     </form>
@@ -39,7 +40,7 @@
                 <!--列表-->
                 <section class="panel panel-padding">
                     <div class="group-button">
-                        <button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
+                        <!--<button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
                             <i class="iconfont">&#xe626;</i> 删除
                         </button>
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao","confirm":"true"}'>
@@ -50,7 +51,7 @@
                         </button>
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&va=23"}'>
                             <i class="layui-icon">&#x1005;</i> 审核
-                        </button>
+                        </button>-->
                         <button class="layui-btn layui-btn-small modal-iframe" data-params='{"content": "/backCategory/save", "title": "添加后端类目","full":"true"}'>
                             <i class="iconfont">&#xe649;</i> 添加
                         </button>

@@ -53,6 +53,11 @@ public class IndexController extends BaseController {
         return VIEW_PREFIX + "login";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return VIEW_PREFIX + "login";
+    }
+
     /*@PostMapping("/login")
     @ResponseBody
     public Object login(String name, String password) {
@@ -106,12 +111,12 @@ public class IndexController extends BaseController {
         menuVOS.add(m4);*/
 
 
-        MenuVO m5 = new MenuVO(5L, "系统管理", "&#xe659;", "");
+        /*MenuVO m5 = new MenuVO(5L, "系统管理", "&#xe659;", "");
         MenuVO m51 = new MenuVO(51L, "系统监控", "&#xe659;", "druid/index.html");
         List<MenuVO> m5Subs = new ArrayList<>();
         m5Subs.add(m51);
         m5.setSub(m5Subs);
-        menuVOS.add(m5);
+        menuVOS.add(m5);*/
 
 
 

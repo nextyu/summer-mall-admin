@@ -49,6 +49,13 @@ public class ProductController extends BaseController {
         return ServiceResponse.buildOk();
     }
 
+    @PutMapping("/updateDelete")
+    @ResponseBody
+    public Object updateDelete(Long id) {
+        Boolean isSuccess = productService.updateDelete(id);
+        return ServiceResponse.buildOk();
+    }
+
     @GetMapping("/update")
     public String update(Long id, Model model) {
 

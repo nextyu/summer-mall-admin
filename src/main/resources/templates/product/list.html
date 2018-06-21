@@ -40,7 +40,7 @@
                 <!--列表-->
                 <section class="panel panel-padding">
                     <div class="group-button">
-                        <button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
+                        <!--<button class="layui-btn layui-btn-small layui-btn-danger ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
                             <i class="iconfont">&#xe626;</i> 删除
                         </button>
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao","confirm":"true"}'>
@@ -51,7 +51,7 @@
                         </button>
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&va=23"}'>
                             <i class="layui-icon">&#x1005;</i> 审核
-                        </button>
+                        </button>-->
                         <button class="layui-btn layui-btn-small modal-iframe" data-params='{"content": "/products/save", "title": "添加产品","full":"true"}'>
                             <i class="iconfont">&#xe649;</i> 添加
                         </button>
@@ -104,7 +104,7 @@
                     <button class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/products/update?id={{ item.id}}", "title": "{{item.title}}","full":"true","data":"id={{ item.id}}" }'>
                         <i class="iconfont">&#xe653;</i>编辑
                     </button>
-                    <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-list='{"key":"id={{ item.id}}","msg":true,"render":"true","action":"del"}' data-params='{"url": "./data/success.json","confirm":"true","data":"id=1&name=ni"}'>
+                    <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-list='{"key":"id={{ item.id}}","msg":true,"render":"true","action":"del"}' data-params='{"method":"put", "url": "/products/updateDelete?id={{ item.id}}","confirm":"true","data":"id={{ item.id}}"}'>
                         <i class="iconfont">&#xe626;</i>删除
                     </button></td>
                 </td>

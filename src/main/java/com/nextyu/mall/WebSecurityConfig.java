@@ -29,10 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("root").password("root").roles("USER", "ADMIN");
-
         auth.userDetailsService(userDetailsService());
-
     }
 
     @Override
@@ -58,8 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")// 登录成功跳转路径
                 .permitAll();
 
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .permitAll();
 
-//        super.configure(http);
     }
 
     @Override
