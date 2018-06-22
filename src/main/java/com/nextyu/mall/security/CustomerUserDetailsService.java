@@ -1,7 +1,7 @@
 package com.nextyu.mall.security;
 
 import com.nextyu.mall.entity.Admin;
-import com.nextyu.mall.service.UserService;
+import com.nextyu.mall.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ import java.util.Objects;
 public class CustomerUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private AdminService adminService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -34,7 +34,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Admin existAdmin = userService.getByUsername(username);
+        Admin existAdmin = adminService.getByUsername(username);
 
         String encodePassword = passwordEncoder.encode(existAdmin.getPassword());
 

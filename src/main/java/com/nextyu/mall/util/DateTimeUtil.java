@@ -10,6 +10,9 @@ import java.util.Date;
  * @author nextyu
  */
 public final class DateTimeUtil {
+
+    public static final String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
+
     private DateTimeUtil() {
         throw new AssertionError();
     }
@@ -63,6 +66,28 @@ public final class DateTimeUtil {
      */
     public static String formatDateTime(DateTime dateTime, String pattern) {
         return dateTime.toString(pattern);
+    }
+
+    /**
+     * 格式化 millis
+     *
+     * @param millis
+     * @param pattern
+     * @return
+     */
+    public static String formatMillis(long millis) {
+        return formatMillis(millis,DateTimeUtil.yyyy_MM_dd_HH_mm_ss);
+    }
+
+    /**
+     * 格式化 millis
+     *
+     * @param millis
+     * @param pattern
+     * @return
+     */
+    public static String formatMillis(long millis, String pattern) {
+        return formatDateTime(DateTimeUtil.millis2DateTime(millis),pattern);
     }
 
     /**

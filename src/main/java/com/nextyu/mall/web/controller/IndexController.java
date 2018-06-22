@@ -99,7 +99,7 @@ public class IndexController extends BaseController {
 
 
         MenuVO m4 = new MenuVO(4L, "会员管理", "&#xe608;", "");
-        MenuVO m41 = new MenuVO(41L, "会员列表", "&#xe608;", "spider/list");
+        MenuVO m41 = new MenuVO(41L, "会员列表", "&#xe608;", "users/list");
         List<MenuVO> m4Subs = new ArrayList<>();
         m4Subs.add(m41);
         m4.setSub(m4Subs);
@@ -107,7 +107,7 @@ public class IndexController extends BaseController {
 
 
         MenuVO m5 = new MenuVO(5L, "订单管理", "&#xe63b;", "");
-        MenuVO m51 = new MenuVO(51L, "订单列表", "&#xe63b;", "druid/index.html");
+        MenuVO m51 = new MenuVO(51L, "订单列表", "&#xe63b;", "orders/list");
         List<MenuVO> m5Subs = new ArrayList<>();
         m5Subs.add(m51);
         m5.setSub(m5Subs);

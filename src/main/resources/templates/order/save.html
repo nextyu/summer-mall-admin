@@ -1,0 +1,105 @@
+<#include "/common/header.html">
+
+<link rel="stylesheet" type="text/css" href="/css/webuploader.css?v=0.1.5" media="all">
+
+<body>
+    <div class="container-fluid larry-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <section class="panel panel-padding">
+                    <form id="form1" class="layui-form layui-form-pane" action="/carouses">
+
+                        <input type="hidden" name="id" value="${(object.id)!}" id="productId">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" value="${(object.title)!}" required jq-verify="required" jq-error="请输入标题" placeholder="请输入标题" autocomplete="off" class="layui-input ">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">链接</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="link" value="${(object.link)!}" required jq-verify="required" jq-error="请输入链接" placeholder="请输入链接" autocomplete="off" class="layui-input ">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数据</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="data" value="${(object.data)!}"  placeholder="请输入数据" jq-error="请输入数据" placeholder="请输入数据" autocomplete="off" autocomplete="off" class="layui-input ">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上架</label>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="status" title="是" value="1" checked />
+                                <input type="radio" name="status" title="否" value="0"
+                                <#if object?? && object.status == 0> checked </#if>
+                                />
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="image" value="${(object.image)!}" id="subImages">
+
+                        <#if object??>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">原图</label>
+                                <div class="layui-input-block">
+                                        <img src="${object.imageUrl}" alt="..." class="img-thumbnail" style="width: 10%">
+
+                                </div>
+                            </div>
+                        </#if>
+
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上传图片</label>
+                            <div class="layui-input-block">
+                                <div id="uploader" class="wu-example">
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="filePicker"></div>
+                                            <p>或将照片拖到这里，单次最多可选300张</p>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div>
+                                        <div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div>
+                                            <div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" jq-submit data-ajax="true" lay-filter="submit">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/layui/layui.js"></script>
+
+    <#include "/common/version.html">
+
+<script>
+    layui.use('product');
+</script>
+
+</html>

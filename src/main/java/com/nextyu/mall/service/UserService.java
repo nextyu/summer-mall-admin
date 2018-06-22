@@ -1,12 +1,21 @@
 package com.nextyu.mall.service;
 
-import com.nextyu.mall.entity.Admin;
+import com.github.pagehelper.PageInfo;
+import com.nextyu.mall.query.UserQuery;
+import com.nextyu.mall.vo.UserVO;
 
-/**
- * created on 2017-10-27 17:19
- *
- * @author nextyu
- */
+import java.util.List;
+
 public interface UserService {
-    Admin getByUsername(String username);
+    Boolean save(UserVO userVO);
+
+    UserVO getById(Long id);
+
+    Boolean update(UserVO userVO);
+
+    List<UserVO> listAll();
+
+    List<UserVO> listPage(UserQuery query);
+
+    PageInfo<UserVO> getPageInfo(UserQuery query);
 }

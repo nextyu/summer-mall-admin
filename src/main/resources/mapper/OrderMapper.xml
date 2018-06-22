@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nextyu.mall.dao.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.nextyu.mall.entity.Order">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="product_id" jdbcType="BIGINT" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_quantity" jdbcType="INTEGER" property="productQuantity"/>
+        <result column="product_price" jdbcType="BIGINT" property="productPrice"/>
+        <result column="total_price" jdbcType="BIGINT" property="totalPrice"/>
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, product_id, product_name, product_quantity, product_price, total_price, 
+    order_status, create_time, update_time, version
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.nextyu.mall.entity.Order">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into order (user_id, product_id, product_name,
+        product_quantity, product_price, total_price,
+        order_status, create_time, update_time,
+        version)
+        values (#{userId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR},
+        #{productQuantity,jdbcType=INTEGER}, #{productPrice,jdbcType=BIGINT}, #{totalPrice,jdbcType=BIGINT},
+        #{orderStatus,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT},
+        #{version,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nextyu.mall.entity.Order">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productQuantity != null">
+                product_quantity,
+            </if>
+            <if test="productPrice != null">
+                product_price,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productQuantity != null">
+                #{productQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="productPrice != null">
+                #{productPrice,jdbcType=BIGINT},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=BIGINT},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nextyu.mall.entity.Order">
+        update order
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=BIGINT},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productQuantity != null">
+                product_quantity = #{productQuantity,jdbcType=INTEGER},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice,jdbcType=BIGINT},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=BIGINT},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="version != null">
+                version = version + 1,
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT} and version = #{version}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nextyu.mall.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_quantity = #{productQuantity,jdbcType=INTEGER},
+      product_price = #{productPrice,jdbcType=BIGINT},
+      total_price = #{totalPrice,jdbcType=BIGINT},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=BIGINT}  and version = #{version}
+  </update>
+
+    <!--#######-->
+    <select id="list" resultType="com.nextyu.mall.vo.OrderVO">
+        select
+          o.id,
+          o.product_name,
+          o.product_price,
+          o.product_quantity,
+          o.total_price,
+          o.order_status,
+          o.create_time,
+          u.nickname,
+          p.main_image product_image
+        from `order` o inner join user u on o.user_id = u.id
+          inner join product p on o.product_id = p.id
+        order by o.create_time desc
+    </select>
+
+</mapper>
