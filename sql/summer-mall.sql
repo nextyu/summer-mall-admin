@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-06-13 19:16:08
+Date: 2018-06-22 11:37:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,12 +32,13 @@ CREATE TABLE `back_category` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='后端类目';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后端类目';
 
 -- ----------------------------
 -- Records of back_category
 -- ----------------------------
-INSERT INTO `back_category` VALUES ('1', null, '美食', '5a41849ac1cd45e4a11157bcad924ac3.jpg', null, null, '1', '0', '1528887929852', '1528887963349', '1');
+INSERT INTO `back_category` VALUES ('1', null, '美食', '5a41849ac1cd45e4a11157bcad924ac3.jpg', null, null, '1', '0', '1528887929852', '1529560886460', '1');
+INSERT INTO `back_category` VALUES ('2', null, '男装', '7fa5c72c9ebc4e56b8addfd3e888846d.jpg', null, null, '1', '0', '1529489837568', '1529577814791', '1');
 
 -- ----------------------------
 -- Table structure for carousel
@@ -56,12 +57,13 @@ CREATE TABLE `carousel` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='轮播图';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='轮播图';
 
 -- ----------------------------
 -- Records of carousel
 -- ----------------------------
-INSERT INTO `carousel` VALUES ('1', null, '美食', '3b9d6a603cb645fb95ee261c7925adb3.jpg', '美食', '', '1', '0', '1528887704154', '1528888195982', '1');
+INSERT INTO `carousel` VALUES ('1', null, '美食', 'ba779a5b84284569bdd66ee18138bd5b.jpg', '美食', '', '1', '0', '1528887704154', '1529580159241', '1');
+INSERT INTO `carousel` VALUES ('2', null, '箱包', '565d0e2fd63e4dea9c8d4744039b72f0.jpg', '箱包', '箱包', '1', '0', '1529487590780', '1529580162140', '1');
 
 -- ----------------------------
 -- Table structure for product
@@ -87,15 +89,15 @@ CREATE TABLE `product` (
   `is_delete` int(11) default '0' COMMENT '是否删除，0：未删除，1：已删除',
   `create_time` bigint(20) default NULL COMMENT '创建时间',
   `update_time` bigint(20) default NULL COMMENT '更新时间',
-  `version` bigint(20) default NULL COMMENT '版本号',
+  `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='产品';
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1528888043865', null);
-INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1528888043865', null);
+INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529573585543', '10');
+INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529560535175', '1');
 
 -- ----------------------------
 -- Table structure for product_detail
@@ -115,5 +117,5 @@ CREATE TABLE `product_detail` (
 -- ----------------------------
 -- Records of product_detail
 -- ----------------------------
-INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', null, '1');
+INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1529573585546', '3');
 INSERT INTO `product_detail` VALUES ('2', '2', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', null, '1');
