@@ -1,6 +1,6 @@
 package com.nextyu.mall.service.impl;
 
-import com.nextyu.mall.entity.User;
+import com.nextyu.mall.entity.Admin;
 import com.nextyu.mall.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public User getByUsername(String username) {
-        return new User(1L, "root", "root");
+    public Admin getByUsername(String username) {
+        return new Admin(1L, "root", "root");
     }
 }

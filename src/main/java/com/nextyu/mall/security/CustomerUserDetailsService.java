@@ -1,5 +1,6 @@
 package com.nextyu.mall.security;
 
+import com.nextyu.mall.entity.Admin;
 import com.nextyu.mall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,14 +34,14 @@ public class CustomerUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        com.nextyu.mall.entity.User existUser = userService.getByUsername(username);
+        Admin existAdmin = userService.getByUsername(username);
 
-        String encodePassword = passwordEncoder.encode(existUser.getPassword());
+        String encodePassword = passwordEncoder.encode(existAdmin.getPassword());
 
-        existUser.setPassword(encodePassword);
+        existAdmin.setPassword(encodePassword);
 
         // 数据库查找用户信息
-        if (Objects.isNull(existUser)) {
+        if (Objects.isNull(existAdmin)) {
             throw new UsernameNotFoundException(username + " not found");
         }
 
@@ -50,6 +51,6 @@ public class CustomerUserDetailsService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        return User.withUsername(username).password(existUser.getPassword()).authorities(authorities).build();
+        return User.withUsername(username).password(existAdmin.getPassword()).authorities(authorities).build();
     }
 }

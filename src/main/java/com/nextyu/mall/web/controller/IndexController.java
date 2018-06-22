@@ -90,7 +90,7 @@ public class IndexController extends BaseController {
         menuVOS.add(m2);
 
         MenuVO m3 = new MenuVO(3L, "类目管理", "&#xe610;", "");
-        MenuVO m31 = new MenuVO(31L, "后端类目", "&#xe610;", "backCategory/list");
+        MenuVO m31 = new MenuVO(31L, "类目列表", "&#xe610;", "backCategory/list");
         List<MenuVO> m3Subs = new ArrayList<>();
         m3Subs.add(m31);
         m3.setSub(m3Subs);
@@ -98,33 +98,21 @@ public class IndexController extends BaseController {
 
 
 
-        /*MenuVO m4 = new MenuVO(4L, "爬虫管理", "&#xe617;", "");
-        MenuVO m41 = new MenuVO(41L, "爬虫列表", "&#xe617;", "spider/list");
+        MenuVO m4 = new MenuVO(4L, "会员管理", "&#xe608;", "");
+        MenuVO m41 = new MenuVO(41L, "会员列表", "&#xe608;", "spider/list");
         List<MenuVO> m4Subs = new ArrayList<>();
         m4Subs.add(m41);
         m4.setSub(m4Subs);
-        menuVOS.add(m4);*/
+        menuVOS.add(m4);
 
 
-        /*MenuVO m5 = new MenuVO(5L, "系统管理", "&#xe659;", "");
-        MenuVO m51 = new MenuVO(51L, "系统监控", "&#xe659;", "druid/index.html");
+        MenuVO m5 = new MenuVO(5L, "订单管理", "&#xe63b;", "");
+        MenuVO m51 = new MenuVO(51L, "订单列表", "&#xe63b;", "druid/index.html");
         List<MenuVO> m5Subs = new ArrayList<>();
         m5Subs.add(m51);
         m5.setSub(m5Subs);
-        menuVOS.add(m5);*/
+        menuVOS.add(m5);
 
-
-
-
-
-
-        /*MenuVO activity = new MenuVO(2L, "活动管理", "&#xe633;", "");
-        MenuVO activity21 = new MenuVO(21L, "活动列表", "&#xe633;", "activities/list");
-        List<MenuVO> activitySubs = new ArrayList<>();
-        activitySubs.add(activity21);
-        activity.setSub(activitySubs);
-
-        menuVOS.add(activity);*/
 
 
         return ServiceResponse.buildOk(null, menuVOS);

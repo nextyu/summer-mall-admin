@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-06-22 11:37:14
+Date: 2018-06-22 16:06:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,6 +66,29 @@ INSERT INTO `carousel` VALUES ('1', null, '美食', 'ba779a5b84284569bdd66ee1813
 INSERT INTO `carousel` VALUES ('2', null, '箱包', '565d0e2fd63e4dea9c8d4744039b72f0.jpg', '箱包', '箱包', '1', '0', '1529487590780', '1529580162140', '1');
 
 -- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `user_id` bigint(20) default NULL COMMENT '用户id',
+  `product_id` bigint(20) default NULL COMMENT '产品id',
+  `product_name` varchar(100) default NULL COMMENT '产品名称',
+  `product_quantity` int(11) default NULL COMMENT '产品数量',
+  `product_price` bigint(20) default NULL COMMENT '产品单价',
+  `total_price` bigint(20) default NULL COMMENT '总价',
+  `order_status` int(11) default '1' COMMENT '订单状态，1：待付款，2：待发货，3：待收货，4：已完成，5.已取消',
+  `create_time` bigint(20) default NULL COMMENT '创建时间',
+  `update_time` bigint(20) default NULL COMMENT '更新时间',
+  `version` bigint(20) default '1' COMMENT '版本号',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单';
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
@@ -97,7 +120,7 @@ CREATE TABLE `product` (
 -- Records of product
 -- ----------------------------
 INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529573585543', '10');
-INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529560535175', '1');
+INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529654582046', '5');
 
 -- ----------------------------
 -- Table structure for product_detail
@@ -119,3 +142,23 @@ CREATE TABLE `product_detail` (
 -- ----------------------------
 INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1529573585546', '3');
 INSERT INTO `product_detail` VALUES ('2', '2', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', null, '1');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `nickname` varchar(200) default NULL COMMENT '昵称',
+  `phone` varchar(100) default NULL COMMENT '手机号',
+  `password` varchar(100) default NULL COMMENT '密码',
+  `avatar` varchar(100) default NULL COMMENT '头像',
+  `create_time` bigint(20) default NULL COMMENT '创建时间',
+  `update_time` bigint(20) default NULL COMMENT '更新时间',
+  `version` bigint(20) default '1' COMMENT '版本号',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------

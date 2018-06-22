@@ -1,6 +1,6 @@
 package com.nextyu.mall.service;
 
-import com.nextyu.mall.entity.User;
+import com.nextyu.mall.entity.Admin;
 
 /**
  * created on 2017-10-27 17:19
@@ -8,5 +8,5 @@ import com.nextyu.mall.entity.User;
  * @author nextyu
  */
 public interface UserService {
-    User getByUsername(String username);
+    Admin getByUsername(String username);
 }
