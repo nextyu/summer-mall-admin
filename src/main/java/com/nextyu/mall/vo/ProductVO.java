@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 public class ProductVO {
 
+    private String detail;
     private List<String> images;
-
     private BigDecimal originalPriceYuan;
     private BigDecimal currentPriceYuan;
 
@@ -47,6 +47,16 @@ public class ProductVO {
      * 简介
      */
     private String summary;
+
+    /**
+     * 地址
+     */
+    private String address;
+
+    /**
+     * 营业时间
+     */
+    private String hours;
 
     /**
      * 主图
@@ -93,6 +103,24 @@ public class ProductVO {
      */
     private Integer status;
 
-    private String detail;
+    /**
+     * 是否删除，0：未删除，1：已删除
+     */
+    private Integer isDelete;
+
+    /**
+     * 创建时间
+     */
+    private Long createTime;
+
+    /**
+     * 更新时间
+     */
+    private Long updateTime;
+
+    /**
+     * 版本号
+     */
+    private Long version;
 
 }

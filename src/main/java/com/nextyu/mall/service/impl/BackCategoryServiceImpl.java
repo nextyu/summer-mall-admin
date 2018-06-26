@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nextyu.mall.dao.BackCategoryMapper;
 import com.nextyu.mall.entity.BackCategory;
+import com.nextyu.mall.entity.Product;
 import com.nextyu.mall.query.BackCategoryQuery;
 import com.nextyu.mall.service.BackCategoryService;
 import com.nextyu.mall.service.UploadService;
@@ -91,5 +92,21 @@ public class BackCategoryServiceImpl implements BackCategoryService {
         updateBackCategory.setUpdateTime(DateTimeUtil.currentTimeMillis());
 
         return backCategoryMapper.updateByPrimaryKeySelective(updateBackCategory) > 0;
+    }
+
+    @Override
+    public Boolean updateDelete(Long id) {
+        BackCategory backCategory = backCategoryMapper.selectByPrimaryKey(id);
+        if (null == backCategory) {
+            return false;
+        }
+        BackCategory update = new BackCategory();
+        update.setId(id);
+        update.setIsDelete(1);
+        update.setUpdateTime(DateTimeUtil.currentTimeMillis());
+        update.setVersion(backCategory.getVersion());
+        int rows = backCategoryMapper.updateByPrimaryKeySelective(update);
+        return rows > 0;
+
     }
 }

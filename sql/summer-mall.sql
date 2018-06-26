@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-06-22 16:06:42
+Date: 2018-06-26 19:42:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,19 @@ CREATE TABLE `back_category` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后端类目';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='后端类目';
 
 -- ----------------------------
 -- Records of back_category
 -- ----------------------------
-INSERT INTO `back_category` VALUES ('1', null, '美食', '5a41849ac1cd45e4a11157bcad924ac3.jpg', null, null, '1', '0', '1528887929852', '1529560886460', '1');
-INSERT INTO `back_category` VALUES ('2', null, '男装', '7fa5c72c9ebc4e56b8addfd3e888846d.jpg', null, null, '1', '0', '1529489837568', '1529577814791', '1');
+INSERT INTO `back_category` VALUES ('3', null, '阿芙佳朵', '', null, null, '1', '0', '1529984372710', '1529984461842', '1');
+INSERT INTO `back_category` VALUES ('4', null, '告尔多', '', null, null, '1', '0', '1529984399525', '1529984443983', '1');
+INSERT INTO `back_category` VALUES ('5', null, '拿铁', '', null, null, '1', '0', '1529984411451', '1529984430626', '1');
+INSERT INTO `back_category` VALUES ('6', null, '玛奇朵', '', null, null, '1', '0', '1529984421975', null, '1');
+INSERT INTO `back_category` VALUES ('7', null, '爱尔兰', '', null, null, '1', '0', '1529984478471', null, '1');
+INSERT INTO `back_category` VALUES ('8', null, '卡布奇洛', '', null, null, '1', '0', '1529984491990', null, '1');
+INSERT INTO `back_category` VALUES ('9', null, '维也纳', '', null, null, '1', '0', '1529984535659', null, '1');
+INSERT INTO `back_category` VALUES ('10', null, '摩卡', '', null, null, '1', '0', '1529984547513', '1529984727390', '1');
 
 -- ----------------------------
 -- Table structure for carousel
@@ -100,6 +106,8 @@ CREATE TABLE `product` (
   `title` varchar(200) default NULL COMMENT '标题',
   `sub_title` varchar(200) default NULL COMMENT '副标题',
   `summary` varchar(200) default NULL COMMENT '简介',
+  `address` varchar(100) default NULL COMMENT '地址',
+  `hours` varchar(100) default NULL COMMENT '营业时间',
   `main_image` varchar(200) default NULL COMMENT '主图',
   `sub_images` varchar(800) default NULL COMMENT '子图，多张',
   `number` varchar(200) default NULL COMMENT '编号',
@@ -114,13 +122,19 @@ CREATE TABLE `product` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='产品';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='产品';
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529573585543', '10');
-INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529654582046', '5');
+INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', null, null, '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529573585543', '10');
+INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', null, null, '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529654582046', '5');
+INSERT INTO `product` VALUES ('3', null, null, '3', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '北京蓝色港湾第二咖啡店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530009770999', '1530010679233', '5');
+INSERT INTO `product` VALUES ('4', null, null, '3', '星巴克臻选™ 卢旺达淑利咖啡豆', '星巴克臻选™ 卢旺达淑利咖啡豆', '星巴克臻选™ 卢旺达淑利咖啡豆', '北京蓝色港湾圣拉娜店', '08:30 am - 21:30 pm', null, '', '', '2000', '2000', null, '100', null, '1', '0', '1530010122618', null, '1');
+INSERT INTO `product` VALUES ('5', null, null, '3', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '北京东方东路二店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530010212288', null, '1');
+INSERT INTO `product` VALUES ('6', null, null, '4', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '北京新源南路咖啡店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530010271861', null, '1');
+INSERT INTO `product` VALUES ('7', null, null, '5', 'casta拿铁', 'casta拿铁', 'casta拿铁', '北京国航大厦店', '09:30 am - 21:30 pm', null, '', '', '5000', '5000', null, '100', null, '1', '0', '1530010537165', null, '1');
+INSERT INTO `product` VALUES ('8', null, null, '6', 'casta玛奇朵', 'casta玛奇朵', 'casta玛奇朵', '北京霄云路咖啡店', '09:30 am - 21:30 pm', null, '', '', '3000', '3000', null, '100', null, '1', '0', '1530010615601', null, '1');
 
 -- ----------------------------
 -- Table structure for product_detail
@@ -135,13 +149,19 @@ CREATE TABLE `product_detail` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='产品详情';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='产品详情';
 
 -- ----------------------------
 -- Records of product_detail
 -- ----------------------------
 INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1529573585546', '3');
 INSERT INTO `product_detail` VALUES ('2', '2', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', null, '1');
+INSERT INTO `product_detail` VALUES ('3', '3', '', '0', '1530009771058', '1530010679247', '5');
+INSERT INTO `product_detail` VALUES ('4', '4', '', '0', '1530010122624', null, '1');
+INSERT INTO `product_detail` VALUES ('5', '5', '', '0', '1530010212295', null, '1');
+INSERT INTO `product_detail` VALUES ('6', '6', '', '0', '1530010271870', null, '1');
+INSERT INTO `product_detail` VALUES ('7', '7', '', '0', '1530010537182', null, '1');
+INSERT INTO `product_detail` VALUES ('8', '8', '', '0', '1530010615609', null, '1');
 
 -- ----------------------------
 -- Table structure for user
@@ -157,8 +177,9 @@ CREATE TABLE `user` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', '小明', '15500000000', '123', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '1529660605000', null, '1');

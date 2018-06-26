@@ -20,4 +20,6 @@ public interface BackCategoryService {
     PageInfo<BackCategoryVO> getPageInfo(BackCategoryQuery query);
 
     Boolean updateStatus(Long id, Integer status);
+
+    Boolean updateDelete(Long id);
 }

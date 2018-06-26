@@ -47,6 +47,13 @@ public class BackCategoryController extends BaseController {
         return ServiceResponse.buildOk();
     }
 
+    @PutMapping("/updateDelete")
+    @ResponseBody
+    public Object updateDelete(Long id) {
+        Boolean isSuccess = backCategoryService.updateDelete(id);
+        return ServiceResponse.buildOk();
+    }
+
     @GetMapping("/list")
     public String listPage() {
         return VIEW_PREFIX + "list";
