@@ -1,10 +1,13 @@
 package com.nextyu.mall.web.controller;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageInfo;
 import com.nextyu.mall.common.ServiceResponse;
 import com.nextyu.mall.query.ProductQuery;
 import com.nextyu.mall.service.BackCategoryService;
 import com.nextyu.mall.service.ProductService;
+import com.nextyu.mall.util.CastUtil;
 import com.nextyu.mall.vo.BackCategoryVO;
 import com.nextyu.mall.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +50,18 @@ public class ProductController extends BaseController {
     public Object updateStatus(Long id, Integer status) {
         Boolean isSuccess = productService.updateStatus(id, status);
         return ServiceResponse.buildOk();
+    }
+
+    @PutMapping("/updateStatusBatch")
+    @ResponseBody
+    public Object updateStatus(String id, Integer status) {
+        List<String> ids = StrUtil.split(id, ',');
+        if (CollUtil.isNotEmpty(ids)) {
+            ids.forEach(oneId -> {
+                productService.updateStatus(CastUtil.castLong(oneId), status);
+            });
+        }
+        return ServiceResponse.buildOk().reload();
     }
 
     @PutMapping("/updateDelete")

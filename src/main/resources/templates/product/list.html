@@ -46,12 +46,11 @@
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao","confirm":"true"}'>
                             <i class="iconfont">&#xe60c;</i> 推荐
                         </button>
-                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&va=23"}'>
-                            <i class="iconfont">&#xe603;</i> 置顶
+
+                        -->
+                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="id" data-params='{"method":"put", "url": "/products/updateStatusBatch","data":"status=1"}'>
+                            <i class="iconfont">&#xe603;</i> 上架
                         </button>
-                        <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&va=23"}'>
-                            <i class="layui-icon">&#x1005;</i> 审核
-                        </button>-->
                         <button class="layui-btn layui-btn-small modal-iframe" data-params='{"content": "/products/save", "title": "添加产品","full":"true"}'>
                             <i class="iconfont">&#xe649;</i> 添加
                         </button>
@@ -69,7 +68,7 @@
         <table id="example" class="layui-table lay-even" data-name="articleData" data-tplid="list-tpl">
             <thead>
             <tr>
-                <th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check" lay-skin="primary"></th>
+                <th width="30"><input type="checkbox" id="checkall" data-name="id" lay-filter="check" lay-skin="primary"></th>
                 <th width="100">序号</th>
                 <th>标题</th>
                 <th>主图</th>
@@ -83,7 +82,7 @@
             <tbody>
             {{# layui.each(d.list, function(index, item){ }}
             <tr>
-                <td><input type="checkbox" name="checkbox" value="{{ item.id}}" lay-skin="primary"></td>
+                <td><input type="checkbox" name="id" value="{{ item.id}}" lay-skin="primary"></td>
                 <td>{{ item.id}}</td>
                 <td>{{ item.title}}</td>
                 <td>

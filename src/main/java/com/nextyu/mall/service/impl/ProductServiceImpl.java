@@ -3,6 +3,7 @@ package com.nextyu.mall.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.nextyu.mall.constant.RedisConstants;
 import com.nextyu.mall.dao.ProductDetailMapper;
 import com.nextyu.mall.dao.ProductMapper;
 import com.nextyu.mall.entity.Product;
@@ -16,6 +17,7 @@ import com.nextyu.mall.util.MoneyUtil;
 import com.nextyu.mall.vo.ProductVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -90,11 +95,24 @@ public class ProductServiceImpl implements ProductService {
         }
 
 
-        if (1 == product.getStatus()) {
-            productRepository.save(productMapper.selectByPrimaryKey(product.getId()));
-        }
+        syncESAndRedis(product.getId(),product.getStatus());
 
         return true;
+    }
+
+    /**
+     * 同步ES以及Redis
+     * @param id
+     * @param status
+     */
+    private void syncESAndRedis(Long id, Integer status) {
+        if (1 == status) {
+            productRepository.save(productMapper.selectByPrimaryKey(id));
+            redisTemplate.opsForValue().set(RedisConstants.PRODUCT_PREFIX + id, productDetailMapper.getByProductId(id).getDetail());
+        } else if (0 == status) {
+            productRepository.deleteById(id);
+            redisTemplate.delete(RedisConstants.PRODUCT_PREFIX + id);
+        }
     }
 
     @Override
@@ -155,26 +173,6 @@ public class ProductServiceImpl implements ProductService {
         return new PageInfo<>(productVOS);
     }
 
-    /*public void batchUpdateStatus() {
-        for (int i = 1; i < 400; i++) {
-            ProductQuery query = new ProductQuery();
-            query.setPageNum(i);
-            query.setPageSize(10);
-            query.setCategoryId(1026L);
-            PageHelper.startPage(query.getPageNum(), query.getPageSize());
-            List<ProductVO> productVOS = productMapper.list(query);
-
-            if (CollectionUtils.isEmpty(productVOS)) {
-                return;
-            }
-
-            for (ProductVO productVO : productVOS) {
-                productRepository.save(productMapper.selectByPrimaryKey(productVO.getId()));
-            }
-
-        }
-    }*/
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Boolean updateStatus(Long id, Integer status) {
@@ -194,11 +192,7 @@ public class ProductServiceImpl implements ProductService {
             return false;
         }
 
-        if (1 == status) {
-            productRepository.save(productMapper.selectByPrimaryKey(id));
-        } else if (0 == status) {
-            productRepository.deleteById(id);
-        }
+        syncESAndRedis(id,status);
 
 
         return true;
