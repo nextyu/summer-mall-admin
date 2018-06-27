@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50096
 File Encoding         : 65001
 
-Date: 2018-06-26 19:42:53
+Date: 2018-06-27 15:48:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,7 +38,6 @@ CREATE TABLE `back_category` (
 -- Records of back_category
 -- ----------------------------
 INSERT INTO `back_category` VALUES ('3', null, '阿芙佳朵', '', null, null, '1', '0', '1529984372710', '1529984461842', '1');
-INSERT INTO `back_category` VALUES ('4', null, '告尔多', '', null, null, '1', '0', '1529984399525', '1529984443983', '1');
 INSERT INTO `back_category` VALUES ('5', null, '拿铁', '', null, null, '1', '0', '1529984411451', '1529984430626', '1');
 INSERT INTO `back_category` VALUES ('6', null, '玛奇朵', '', null, null, '1', '0', '1529984421975', null, '1');
 INSERT INTO `back_category` VALUES ('7', null, '爱尔兰', '', null, null, '1', '0', '1529984478471', null, '1');
@@ -113,28 +112,40 @@ CREATE TABLE `product` (
   `number` varchar(200) default NULL COMMENT '编号',
   `original_price` bigint(20) default NULL COMMENT '原价',
   `current_price` bigint(20) default NULL COMMENT '现价',
-  `view_quantity` bigint(20) default NULL COMMENT '查看量',
-  `stock_quantity` bigint(20) default NULL COMMENT '库存',
-  `sale_quantity` bigint(20) default NULL COMMENT '销量',
+  `view_quantity` bigint(20) default '0' COMMENT '查看量',
+  `stock_quantity` bigint(20) default '0' COMMENT '库存',
+  `sale_quantity` bigint(20) default '0' COMMENT '销量',
   `status` int(11) default '0' COMMENT '状态，0：下架中，1：上架中',
   `is_delete` int(11) default '0' COMMENT '是否删除，0：未删除，1：已删除',
   `create_time` bigint(20) default NULL COMMENT '创建时间',
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='产品';
+  PRIMARY KEY  (`id`),
+  KEY `product_create_time_index` (`create_time`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='产品';
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', null, null, '1', '小面包', '小面包', '小面包', null, null, '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529573585543', '10');
-INSERT INTO `product` VALUES ('2', null, null, '1', '小面包', '小面包', '小面包', null, null, '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '378da7e0ad2e44c5b5c3d8fa777760c0.jpg', '111', '10000', '8000', null, '100', null, '1', '0', '1528888025441', '1529654582046', '5');
-INSERT INTO `product` VALUES ('3', null, null, '3', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '北京蓝色港湾第二咖啡店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530009770999', '1530010679233', '5');
-INSERT INTO `product` VALUES ('4', null, null, '3', '星巴克臻选™ 卢旺达淑利咖啡豆', '星巴克臻选™ 卢旺达淑利咖啡豆', '星巴克臻选™ 卢旺达淑利咖啡豆', '北京蓝色港湾圣拉娜店', '08:30 am - 21:30 pm', null, '', '', '2000', '2000', null, '100', null, '1', '0', '1530010122618', null, '1');
-INSERT INTO `product` VALUES ('5', null, null, '3', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '星巴克臻选™ 巴布亚新几内亚洛卡咖啡豆', '北京东方东路二店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530010212288', null, '1');
-INSERT INTO `product` VALUES ('6', null, null, '4', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '星巴克臻选™ 哥斯达黎加 阿尔萨西亚', '北京新源南路咖啡店', '08:30 am - 21:30 pm', null, '', '', '10000', '10000', null, '100', null, '1', '0', '1530010271861', null, '1');
-INSERT INTO `product` VALUES ('7', null, null, '5', 'casta拿铁', 'casta拿铁', 'casta拿铁', '北京国航大厦店', '09:30 am - 21:30 pm', null, '', '', '5000', '5000', null, '100', null, '1', '0', '1530010537165', null, '1');
-INSERT INTO `product` VALUES ('8', null, null, '6', 'casta玛奇朵', 'casta玛奇朵', 'casta玛奇朵', '北京霄云路咖啡店', '09:30 am - 21:30 pm', null, '', '', '3000', '3000', null, '100', null, '1', '0', '1530010615601', null, '1');
+INSERT INTO `product` VALUES ('1', null, null, '8', '立顿卡布奇洛', '立顿卡布奇洛', '立顿卡布奇洛', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1528888025441', '1530081420570', '11');
+INSERT INTO `product` VALUES ('2', null, null, '10', '立顿摩卡', '立顿摩卡', '立顿摩卡', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1528888025441', '1530081383449', '6');
+INSERT INTO `product` VALUES ('3', null, null, '3', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '星巴克阿芙佳朵', '北京蓝色港湾第二咖啡店', '08:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '10000', '0', '100', '0', '1', '0', '1530009770999', '1530010679233', '5');
+INSERT INTO `product` VALUES ('4', null, null, '8', '星巴克卡布奇洛', '星巴克卡布奇洛', '星巴克卡布奇洛', '北京蓝色港湾圣拉娜店', '08:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '2000', '2000', '0', '100', '0', '1', '0', '1530010122618', '1530081005080', '2');
+INSERT INTO `product` VALUES ('5', null, null, '6', '星巴克玛奇朵', '星巴克玛奇朵', '星巴克玛奇朵', '北京东方东路二店', '08:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '10000', '0', '100', '0', '1', '0', '1530010212288', '1530080962575', '2');
+INSERT INTO `product` VALUES ('6', null, null, '5', '星巴克拿铁', '星巴克拿铁', '星巴克拿铁', '北京新源南路咖啡店', '08:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '10000', '10000', '0', '100', '0', '1', '0', '1530010271861', '1530080939621', '2');
+INSERT INTO `product` VALUES ('7', null, null, '5', 'casta拿铁', 'casta拿铁', 'casta拿铁', '北京国航大厦店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '5000', '5000', '0', '100', '0', '1', '0', '1530010537165', null, '1');
+INSERT INTO `product` VALUES ('8', null, null, '6', 'casta玛奇朵', 'casta玛奇朵', 'casta玛奇朵', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '3000', '3000', '0', '100', '0', '1', '0', '1530010615601', null, '1');
+INSERT INTO `product` VALUES ('9', null, null, '8', 'casta卡布奇洛', 'casta卡布奇洛', 'casta卡布奇洛', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '20000', '10000', '0', '100', '0', '1', '0', '1530081182927', null, '1');
+INSERT INTO `product` VALUES ('10', null, null, '9', '雀巢维也纳', '雀巢维也纳', '雀巢维也纳', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '10000', '0', '100', '0', '1', '0', '1530081598459', null, '1');
+INSERT INTO `product` VALUES ('11', null, null, '7', '雀巢爱尔兰', '雀巢爱尔兰', '雀巢爱尔兰', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '2000', '2000', '0', '100', '0', '1', '0', '1530081641124', null, '1');
+INSERT INTO `product` VALUES ('12', null, null, '5', '雀巢拿铁', '雀巢拿铁', '雀巢拿铁', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '30000', '30000', '0', '100', '0', '1', '0', '1530081705283', '1530082167571', '2');
+INSERT INTO `product` VALUES ('13', null, null, '8', '立顿卡布奇洛', '立顿卡布奇洛', '立顿卡布奇洛', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1530083364570', '1530081420570', '11');
+INSERT INTO `product` VALUES ('14', null, null, '10', '立顿摩卡', '立顿摩卡', '立顿摩卡', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1530083379091', '1530081383449', '6');
+INSERT INTO `product` VALUES ('15', null, null, '8', '立顿卡布奇洛', '立顿卡布奇洛', '立顿卡布奇洛', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1530084722307', '1530081420570', '11');
+INSERT INTO `product` VALUES ('16', null, null, '8', '立顿卡布奇洛', '立顿卡布奇洛', '立顿卡布奇洛', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '28ce100b9faa4a17be16247cb96cbbfc.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1530084726795', '1530081420570', '11');
+INSERT INTO `product` VALUES ('17', null, null, '10', '立顿摩卡', '立顿摩卡', '立顿摩卡', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '8000', '0', '100', '0', '1', '0', '1530084735036', '1530081383449', '6');
+INSERT INTO `product` VALUES ('18', null, null, '9', '雀巢维也纳', '雀巢维也纳', '雀巢维也纳', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '10000', '10000', '0', '100', '0', '1', '0', '1530084750478', null, '1');
+INSERT INTO `product` VALUES ('19', null, null, '5', '雀巢拿铁', '雀巢拿铁', '雀巢拿铁', '北京霄云路咖啡店', '09:30 am - 21:30 pm', '13835319be244b7c91968e0b089cb6c0.jpeg', '13835319be244b7c91968e0b089cb6c0.jpeg', '', '30000', '30000', '0', '100', '0', '1', '0', '1530084755411', '1530082167571', '2');
 
 -- ----------------------------
 -- Table structure for product_detail
@@ -149,19 +160,50 @@ CREATE TABLE `product_detail` (
   `update_time` bigint(20) default NULL COMMENT '更新时间',
   `version` bigint(20) default '1' COMMENT '版本号',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='产品详情';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='产品详情';
 
 -- ----------------------------
 -- Records of product_detail
 -- ----------------------------
-INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1529573585546', '3');
-INSERT INTO `product_detail` VALUES ('2', '2', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', null, '1');
+INSERT INTO `product_detail` VALUES ('1', '1', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1530081420574', '4');
+INSERT INTO `product_detail` VALUES ('2', '2', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1528888025517', '1530081383453', '2');
 INSERT INTO `product_detail` VALUES ('3', '3', '', '0', '1530009771058', '1530010679247', '5');
-INSERT INTO `product_detail` VALUES ('4', '4', '', '0', '1530010122624', null, '1');
-INSERT INTO `product_detail` VALUES ('5', '5', '', '0', '1530010212295', null, '1');
-INSERT INTO `product_detail` VALUES ('6', '6', '', '0', '1530010271870', null, '1');
+INSERT INTO `product_detail` VALUES ('4', '4', '', '0', '1530010122624', '1530081005085', '2');
+INSERT INTO `product_detail` VALUES ('5', '5', '', '0', '1530010212295', '1530080962583', '2');
+INSERT INTO `product_detail` VALUES ('6', '6', '', '0', '1530010271870', '1530080939690', '2');
 INSERT INTO `product_detail` VALUES ('7', '7', '', '0', '1530010537182', null, '1');
 INSERT INTO `product_detail` VALUES ('8', '8', '', '0', '1530010615609', null, '1');
+INSERT INTO `product_detail` VALUES ('9', '9', '', '0', '1530081182947', null, '1');
+INSERT INTO `product_detail` VALUES ('10', '10', '', '0', '1530081598466', null, '1');
+INSERT INTO `product_detail` VALUES ('11', '11', '', '0', '1530081641131', null, '1');
+INSERT INTO `product_detail` VALUES ('12', '12', '', '0', '1530081705291', '1530082167574', '2');
+INSERT INTO `product_detail` VALUES ('13', '13', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1530083364575', null, '1');
+INSERT INTO `product_detail` VALUES ('14', '14', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1530083379100', null, '1');
+INSERT INTO `product_detail` VALUES ('15', '15', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1530084722316', null, '1');
+INSERT INTO `product_detail` VALUES ('16', '16', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1530084726803', null, '1');
+INSERT INTO `product_detail` VALUES ('17', '17', '<img src=\"http://img1.nextyu.com/f695d6e0dc3d481487efa967438c592c.jpg\" alt=\"undefined\">', '0', '1530084735043', null, '1');
+INSERT INTO `product_detail` VALUES ('18', '18', '', '0', '1530084750486', null, '1');
+INSERT INTO `product_detail` VALUES ('19', '19', '', '0', '1530084755418', null, '1');
+
+-- ----------------------------
+-- Table structure for third_bind_info
+-- ----------------------------
+DROP TABLE IF EXISTS `third_bind_info`;
+CREATE TABLE `third_bind_info` (
+  `id` bigint(20) NOT NULL auto_increment COMMENT '主键',
+  `user_id` bigint(20) default NULL COMMENT '用户id',
+  `source` int(11) default NULL COMMENT '绑定来源，1：微信，2：QQ',
+  `app_id` varchar(200) default NULL COMMENT '我方应用在三方平台的应用id',
+  `third_id` varchar(200) default NULL COMMENT '三方平台用户id，比如微信的openid',
+  `union_id` varchar(200) default NULL COMMENT '三方平台的同一开放平台账号下对于我方应用（公众号、app等）的唯一用户id',
+  `status` int(11) default NULL COMMENT '状态，1：绑定，0：:解绑',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `third_bind_info_user_id_source_app_id_third_id_uindex` (`user_id`,`source`,`app_id`,`third_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='三方绑定信息';
+
+-- ----------------------------
+-- Records of third_bind_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user

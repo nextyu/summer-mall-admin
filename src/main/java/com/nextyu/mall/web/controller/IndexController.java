@@ -75,12 +75,12 @@ public class IndexController extends BaseController {
     public Object menuList() {
         List<MenuVO> menuVOS = new ArrayList<>();
 
-        MenuVO m1 = new MenuVO(1L, "首页管理", "&#xe600;", "");
+       /* MenuVO m1 = new MenuVO(1L, "首页管理", "&#xe600;", "");
         MenuVO m11 = new MenuVO(11L, "轮播图", "&#xe60b;", "carouses/list");
         List<MenuVO> m1Subs = new ArrayList<>();
         m1Subs.add(m11);
         m1.setSub(m1Subs);
-        menuVOS.add(m1);
+        menuVOS.add(m1);*/
 
         MenuVO m2 = new MenuVO(2L, "产品管理", "&#xe631;", "");
         MenuVO m21 = new MenuVO(21L, "产品列表", "&#xe631;", "products/list");

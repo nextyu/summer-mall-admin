@@ -102,5 +102,14 @@ public class ProductController extends BaseController {
         return ServiceResponse.buildOk(pageInfo.getPages(), pageInfo.getList());
     }
 
+    @GetMapping("/duplicate/{id}")
+    @ResponseBody
+    public Object duplicate(@PathVariable Long id) {
+        ProductVO productVO = productService.getById(id);
+        productVO.setId(null);
+        productService.save(productVO);
+        return ServiceResponse.buildOk().reload();
+    }
+
 
 }

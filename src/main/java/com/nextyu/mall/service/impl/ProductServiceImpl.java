@@ -126,6 +126,9 @@ public class ProductServiceImpl implements ProductService {
             productVO.setImages(images);
         }
 
+        productVO.setOriginalPriceYuan(MoneyUtil.fen2Yuan(productVO.getOriginalPrice()));
+        productVO.setCurrentPriceYuan(MoneyUtil.fen2Yuan(product.getCurrentPrice()));
+
         return productVO;
     }
 

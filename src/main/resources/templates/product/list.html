@@ -70,14 +70,14 @@
             <thead>
             <tr>
                 <th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check" lay-skin="primary"></th>
-                <th width="80">序号</th>
+                <th width="100">序号</th>
                 <th>标题</th>
                 <th>主图</th>
-                <th>库存</th>
-                <th>销量</th>
-                <th>浏览量</th>
+                <th width="80">库存</th>
+                <th width="80">销量</th>
+                <th width="80">浏览量</th>
                 <th width="80">上下架</th>
-                <th width="152">操作</th>
+                <th width="250">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -106,7 +106,10 @@
                     </button>
                     <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-list='{"key":"id={{ item.id}}","msg":true,"render":"true","action":"del"}' data-params='{"method":"put", "url": "/products/updateDelete?id={{ item.id}}","confirm":"true","data":"id={{ item.id}}"}'>
                         <i class="iconfont">&#xe626;</i>删除
-                    </button></td>
+                    </button>
+                    <button class="layui-btn layui-btn-mini ajax" data-list='{"key":"id={{ item.id}}","msg":true,"render":"true"}' data-params='{"method":"get", "url": "/products/duplicate/{{ item.id}}","confirm":"true","data":"id={{ item.id}}"}'>
+                        <i class="iconfont">&#xe632;</i>复制
+                    </button>
                 </td>
             </tr>
             {{# }); }}
