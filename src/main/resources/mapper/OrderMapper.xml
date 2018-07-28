@@ -21,7 +21,7 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from order
+        from `order`
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -112,7 +112,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.nextyu.mall.entity.Order">
-        update order
+        update `order`
         <set>
             <if test="userId != null">
                 user_id = #{userId,jdbcType=BIGINT},
@@ -176,6 +176,11 @@
           p.main_image product_image
         from `order` o inner join user u on o.user_id = u.id
           inner join product p on o.product_id = p.id
+          <where>
+              <if test="title != null and title != ''">
+                 p.`title` LIKE CONCAT(CONCAT('%', #{title}),'%')
+              </if>
+          </where>
         order by o.create_time desc
     </select>
 

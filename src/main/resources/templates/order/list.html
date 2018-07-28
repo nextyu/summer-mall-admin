@@ -6,7 +6,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <!--头部搜索-->
                 <section class="panel panel-padding">
-                    <form class="layui-form" action="/carouses">
+                    <form class="layui-form" action="/orders">
                         <div class="layui-form">
                             <!--<div class="layui-inline">
                                 <select name="city" lay-verify="required" lay-filter="ajax" data-params='{"url": "/php/test.php","data":"id=1&name=ni&va=23","confirm":"true"}'>
@@ -51,10 +51,10 @@
                         </button>
                         <button class="layui-btn layui-btn-small layui-btn-normal ajax-all" data-name="checkbox" data-params='{"url": "/php/test.php","data":"id=1&name=hao&va=23"}'>
                             <i class="layui-icon">&#x1005;</i> 审核
-                        </button>-->
+                        </button>
                         <button class="layui-btn layui-btn-small modal-iframe" data-params='{"content": "/carouses/save", "title": "添加轮播图","full":"true"}'>
                             <i class="iconfont">&#xe649;</i> 添加
-                        </button>
+                        </button>-->
                     </div>
                     <div id="list" class="layui-form"></div>
 
@@ -99,12 +99,11 @@
                 <td>{{ item.orderTime}}</td>
 
                 <td>
-                    <button class="layui-btn layui-btn-mini modal-iframe" data-params='{"content": "/carouses/update?id={{ item.id}}", "title": "{{item.title}}","full":"true","data":"id={{ item.id}}" }'>
-                        <i class="iconfont">&#xe653;</i>编辑
+                    {{#  if(item.orderStatus === 1){ }}
+                    <button class="layui-btn layui-btn-mini ajax" data-params='{"method":"put", "url": "/orders/confirm?id={{ item.id}}","confirm":"true"}'>
+                        <i class="iconfont">&#xe61b;</i>确认消费
                     </button>
-                    <button class="layui-btn layui-btn-mini layui-btn-danger ajax" data-list='{"key":"id={{ item.id}}","msg":true,"render":"true","action":"del"}' data-params='{"url": "./data/success.json","confirm":"true","data":"id=1&name=ni"}'>
-                        <i class="iconfont">&#xe626;</i>删除
-                    </button>
+                    {{#  } }}
                 </td>
             </tr>
             {{# }); }}

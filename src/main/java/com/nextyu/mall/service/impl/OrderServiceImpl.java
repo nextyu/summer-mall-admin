@@ -5,8 +5,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nextyu.mall.dao.OrderMapper;
 import com.nextyu.mall.entity.Order;
+import com.nextyu.mall.enums.OrderStatusEnum;
 import com.nextyu.mall.query.OrderQuery;
 import com.nextyu.mall.service.OrderService;
+import com.nextyu.mall.service.UploadService;
 import com.nextyu.mall.util.DateTimeUtil;
 import com.nextyu.mall.util.MoneyUtil;
 import com.nextyu.mall.util.OrderStatusHelper;
@@ -21,6 +23,9 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private UploadService uploadService;
 
     @Override
     public Boolean save(OrderVO orderVO) {
@@ -62,12 +67,28 @@ public class OrderServiceImpl implements OrderService {
         List<OrderVO> orderVOS = orderMapper.list(query);
         if (CollUtil.isNotEmpty(orderVOS)) {
             for (OrderVO orderVO : orderVOS) {
-                orderVO.setOrderStatusStr(OrderStatusHelper.getDesc(orderVO.getOrderStatus()));
+                orderVO.setProductImage(uploadService.getImgDomain() + orderVO.getProductImage());
+                orderVO.setOrderStatusStr(OrderStatusEnum.getDesc(orderVO.getOrderStatus()));
                 orderVO.setOrderTime(DateTimeUtil.formatMillis(orderVO.getCreateTime()));
                 orderVO.setProductPriceYuan(MoneyUtil.fen2Yuan(orderVO.getProductPrice()).toString());
                 orderVO.setTotalPriceYuan(MoneyUtil.fen2Yuan(orderVO.getTotalPrice()).toString());
             }
         }
         return new PageInfo<>(orderVOS);
+    }
+
+    @Override
+    public boolean confirm(Long id) {
+        Order existOrder = orderMapper.selectByPrimaryKey(id);
+        if (existOrder == null) {
+            return false;
+        }
+        Order orderUpdate = new Order();
+        orderUpdate.setId(id);
+        orderUpdate.setUpdateTime(DateTimeUtil.currentTimeMillis());
+        orderUpdate.setOrderStatus(OrderStatusEnum.USED.code());
+        orderUpdate.setVersion(existOrder.getVersion());
+        int rows = orderMapper.updateByPrimaryKeySelective(orderUpdate);
+        return rows > 0;
     }
 }

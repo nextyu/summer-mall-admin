@@ -83,25 +83,6 @@ public class ProductController extends BaseController {
         return VIEW_PREFIX + "save";
     }
 
-    /*
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Object update(@PathVariable Long id, ProductVO productVO) {
-        Boolean isSuccess = productService.update(productVO);
-        return new Object();
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Object getById(@PathVariable Long id) {
-        ProductVO productVO = productService.getById(id);
-        return new Object();
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public Object listAll() {
-        List<ProductVO> productVOS = productService.listAll();
-        return new Object();
-    }*/
 
     @GetMapping("/list")
     public String listPage(Model model) {

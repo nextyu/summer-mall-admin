@@ -18,7 +18,7 @@ spring:
   data:
     elasticsearch:
       cluster-nodes: elasticsearch-server:9300
-      cluster-name: elasticsearch
+      cluster-name: my_elasticsearch
       repositories:
         enabled: true
   redis:
