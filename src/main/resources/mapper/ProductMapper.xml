@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nextyu.mall.dao.ProductMapper">
     <resultMap id="BaseResultMap" type="com.nextyu.mall.entity.Product">
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
-        <result column="shop_id" jdbcType="BIGINT" property="shopId" />
-        <result column="category_id" jdbcType="BIGINT" property="categoryId" />
-        <result column="title" jdbcType="VARCHAR" property="title" />
-        <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
-        <result column="summary" jdbcType="VARCHAR" property="summary" />
-        <result column="address" jdbcType="VARCHAR" property="address" />
-        <result column="hours" jdbcType="VARCHAR" property="hours" />
-        <result column="main_image" jdbcType="VARCHAR" property="mainImage" />
-        <result column="sub_images" jdbcType="VARCHAR" property="subImages" />
-        <result column="number" jdbcType="VARCHAR" property="number" />
-        <result column="original_price" jdbcType="BIGINT" property="originalPrice" />
-        <result column="current_price" jdbcType="BIGINT" property="currentPrice" />
-        <result column="view_quantity" jdbcType="BIGINT" property="viewQuantity" />
-        <result column="stock_quantity" jdbcType="BIGINT" property="stockQuantity" />
-        <result column="sale_quantity" jdbcType="BIGINT" property="saleQuantity" />
-        <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
-        <result column="create_time" jdbcType="BIGINT" property="createTime" />
-        <result column="update_time" jdbcType="BIGINT" property="updateTime" />
-        <result column="version" jdbcType="BIGINT" property="version" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="merchant_id" jdbcType="BIGINT" property="merchantId"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="sub_title" jdbcType="VARCHAR" property="subTitle"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="hours" jdbcType="VARCHAR" property="hours"/>
+        <result column="main_image" jdbcType="VARCHAR" property="mainImage"/>
+        <result column="sub_images" jdbcType="VARCHAR" property="subImages"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="original_price" jdbcType="BIGINT" property="originalPrice"/>
+        <result column="current_price" jdbcType="BIGINT" property="currentPrice"/>
+        <result column="view_quantity" jdbcType="BIGINT" property="viewQuantity"/>
+        <result column="stock_quantity" jdbcType="BIGINT" property="stockQuantity"/>
+        <result column="sale_quantity" jdbcType="BIGINT" property="saleQuantity"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, merchant_id, shop_id, category_id, title, sub_title, summary, address, hours,
@@ -32,7 +32,7 @@
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from product
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -264,7 +264,7 @@
                 version = version + 1,
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}  and version = #{version}
+        where id = #{id,jdbcType=BIGINT} and version = #{version}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.nextyu.mall.entity.Product">
     update product
@@ -307,6 +307,9 @@
         </if>
         ORDER BY
         p.create_time DESC
+    </select>
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(*) from product where is_delete = 0
     </select>
 
 </mapper>

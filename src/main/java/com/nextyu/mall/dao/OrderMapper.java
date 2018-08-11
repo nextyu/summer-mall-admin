@@ -22,4 +22,6 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     List<OrderVO> list(OrderQuery query);
+
+    Long getTotalCount();
 }

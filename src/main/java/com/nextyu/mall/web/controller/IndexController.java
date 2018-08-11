@@ -2,7 +2,10 @@ package com.nextyu.mall.web.controller;
 
 
 import com.nextyu.mall.common.ServiceResponse;
+import com.nextyu.mall.service.IndexService;
 import com.nextyu.mall.vo.MenuVO;
+import com.nextyu.mall.vo.WelcomeVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -14,16 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 2017-03-08 上午11:49
  *
  * @author nextyu
  */
 @Controller
 public class IndexController extends BaseController {
+
+    @Autowired
+    private IndexService indexService;
+
     private static final String VIEW_PREFIX = "index/";
 
     @GetMapping({"/", "index"})
-//    @PreAuthorize("hasRole('ADMIN')")
     public String index(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = "";
@@ -39,7 +44,9 @@ public class IndexController extends BaseController {
     }
 
     @GetMapping("/welcome")
-    public String main() {
+    public String main(Model model) {
+        WelcomeVO welcomeVO = indexService.getWelcomeInfo();
+        model.addAttribute("welcomeInfo", welcomeVO);
         return VIEW_PREFIX + "welcome";
     }
 
@@ -53,17 +60,6 @@ public class IndexController extends BaseController {
         return VIEW_PREFIX + "login";
     }
 
-    /*@PostMapping("/login")
-    @ResponseBody
-    public Object login(String name, String password) {
-
-        if (!StringUtils.equals(name, "smile") || !StringUtils.equals(password, "123456")) {
-           return ServiceResponse.buildError("用户名或密码错误");
-        }
-
-        return ServiceResponse.buildOk().url("/");
-    }*/
-
 
     /**
      * 菜单列表
@@ -75,26 +71,20 @@ public class IndexController extends BaseController {
     public Object menuList() {
         List<MenuVO> menuVOS = new ArrayList<>();
 
-       /* MenuVO m1 = new MenuVO(1L, "首页管理", "&#xe600;", "");
-        MenuVO m11 = new MenuVO(11L, "轮播图", "&#xe60b;", "carouses/list");
-        List<MenuVO> m1Subs = new ArrayList<>();
-        m1Subs.add(m11);
-        m1.setSub(m1Subs);
-        menuVOS.add(m1);*/
-
-        MenuVO m2 = new MenuVO(2L, "产品管理", "&#xe631;", "");
-        MenuVO m21 = new MenuVO(21L, "产品列表", "&#xe631;", "products/list");
-        List<MenuVO> m2Subs = new ArrayList<>();
-        m2Subs.add(m21);
-        m2.setSub(m2Subs);
-        menuVOS.add(m2);
-
         MenuVO m3 = new MenuVO(3L, "类目管理", "&#xe610;", "");
         MenuVO m31 = new MenuVO(31L, "类目列表", "&#xe610;", "backCategory/list");
         List<MenuVO> m3Subs = new ArrayList<>();
         m3Subs.add(m31);
         m3.setSub(m3Subs);
         menuVOS.add(m3);
+
+        MenuVO m2 = new MenuVO(2L, "商品管理", "&#xe631;", "");
+        MenuVO m21 = new MenuVO(21L, "商品列表", "&#xe631;", "products/list");
+        List<MenuVO> m2Subs = new ArrayList<>();
+        m2Subs.add(m21);
+        m2.setSub(m2Subs);
+        menuVOS.add(m2);
+
 
 
 
@@ -112,8 +102,6 @@ public class IndexController extends BaseController {
         m5Subs.add(m51);
         m5.setSub(m5Subs);
         menuVOS.add(m5);
-
-
 
         return ServiceResponse.buildOk(null, menuVOS);
     }

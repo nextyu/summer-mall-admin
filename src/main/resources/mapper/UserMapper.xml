@@ -130,6 +130,9 @@
     <select id="list" resultType="com.nextyu.mall.vo.UserVO">
         select <include refid="Base_Column_List"/> from user
     </select>
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(*) from user
+    </select>
 
 
 </mapper>

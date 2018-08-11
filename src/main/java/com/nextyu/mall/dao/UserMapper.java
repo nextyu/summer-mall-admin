@@ -22,4 +22,7 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     List<UserVO> list(UserQuery query);
+
+    Long getTotalCount();
+
 }

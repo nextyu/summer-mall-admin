@@ -22,4 +22,6 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
     List<ProductVO> list(ProductQuery query);
+
+    Long getTotalCount();
 }

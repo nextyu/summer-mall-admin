@@ -15,8 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * created on 2017-10-27 10:00
- *
  * @author nextyu
  */
 @Configuration

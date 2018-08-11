@@ -183,5 +183,8 @@
           </where>
         order by o.create_time desc
     </select>
+    <select id="getTotalCount" resultType="java.lang.Long">
+        select count(*) from `order`
+    </select>
 
 </mapper>
